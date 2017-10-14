@@ -55,7 +55,9 @@ public abstract class DayPickerView extends RecyclerView implements OnDateChange
     protected int mNumWeeks = 6;
     protected boolean mShowWeekNumber = false;
     protected int mDaysPerWeek = 7;
-    private static SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy", Locale.getDefault());
+    private static Locale defaultLocale = Locale.getDefault();
+
+    private static SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy", defaultLocale);
 
     protected Context mContext;
     protected Handler mHandler;
@@ -339,7 +341,7 @@ public abstract class DayPickerView extends RecyclerView implements OnDateChange
         cal.set(day.year, day.month, day.day);
 
         String sbuf = "";
-        sbuf += cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+        sbuf += cal.getDisplayName(Calendar.MONTH, Calendar.LONG, defaultLocale);
         sbuf += " ";
         sbuf += YEAR_FORMAT.format(cal.getTime());
         return sbuf;
